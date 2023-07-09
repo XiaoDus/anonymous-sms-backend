@@ -1,0 +1,210 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "匿名信",
+				"enablePullDownRefresh": false
+			}
+			
+		},{
+			"path": "pages/myself/myself",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": true
+			}
+			
+		}
+	    ,{
+            "path" : "pages/forEmail/forEmail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "写信",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/openMail/openMail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "公开信",
+                "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/login/login",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "登陆",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/question/question",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "常见问题",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mailBox/mailBox",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的信箱",
+                "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/mailMessage/mailMessage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "短信详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/service/service",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "问题反馈",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+            "path" : "pages/labour/labour",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "人工传话",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+            "path" : "pages/leave/leave",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "留言板",
+                "enablePullDownRefresh": true
+            }
+            
+        }
+        ,{
+            "path" : "pages/writeLeave/writeLeave",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "留言",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#bebebe"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#3cc51f",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/sate.jpg",
+				"selectedIconPath": "static/sate1.jpg",
+				"text": "写信"
+			},
+			{
+				"pagePath": "pages/openMail/openMail",
+				"iconPath": "static/open.png",
+				"selectedIconPath": "static/open1.png",
+				"text": "公开信"
+			},
+			{
+				"pagePath" : "pages/leave/leave",
+				"iconPath": "static/leave.png",
+				"selectedIconPath": "static/leave1.png",
+				"text": "留言板"
+			},
+			{
+				"pagePath": "pages/myself/myself",
+				"iconPath": "static/me.png",
+				"selectedIconPath": "static/me1.png",
+				"text": "我的"
+			}
+			
+			
+			]
+	},
+	
+	"condition": { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式（list 的索引项）
+		"list": [{
+				"name": "写信", //模式名称
+				"path": "pages/forEmail/forEmail" //启动页面，必选
+				
+			},
+			{
+				"name": "公开信",
+				"path": "pages/openMail/openMail"
+			},
+			{
+				"name": "我的",
+				"path": "pages/myself/myself"
+			},
+			{
+				"name": "首页",
+				"path": "pages/index/index"
+			},
+			
+			{
+				"name": "登陆",
+				"path" : "pages/login/login"
+			},
+			{
+				"name": "常见问题",
+				"path" : "pages/question/question"
+			},
+			{
+				"name": "留言板",
+				"path" : "pages/leave/leave"
+			},
+			
+			{
+				"name": "我的信箱",
+				"path" : "pages/mailBox/mailBox"
+			},
+			{
+				"name": "短信详情",
+				"path" : "pages/mailMessage/mailMessage"
+			},
+			{
+				"name": "留言",
+				"path" : "pages/writeLeave/writeLeave"
+			},
+			
+			{
+				"name": "人工传话",
+				"path" : "pages/labour/labour"
+			}
+			
+			
+		]
+	},
+	
+	"uniIdRouter": {},
+	
+	"name": "uni-sms",
+	"extensions": {
+		"uni-cloud-sms": {} // 启用uni-cloud-sms扩展，值为空对象即可
+	}
+}
