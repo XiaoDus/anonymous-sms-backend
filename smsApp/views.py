@@ -16,7 +16,7 @@ def UserLogin(name, phone, url, key, openId):
     if not models.UserInfo.objects.filter(phone=phone).exists():  # 如果没有则创建
         models.UserInfo.objects.create(name=name, phone=phone, url=url, session_key=key, openId=openId)
     else:
-        models.UserInfo.objects.filter(phone=phone).update(name=name, url=url, session_key=key,
+        models.UserInfo.objects.filter(phone=phone).update(session_key=key,
                                                            openId=openId)  # 否则就更新信息
 
 
@@ -194,6 +194,7 @@ def saveMailMessage(request):
                 return JsonResponse(rueslt)
             return JsonResponse({'static': 500})
 
+from django.http import HttpResponse
 @csrf_exempt
 def mailReply(request):
     '''短信回复'''
@@ -202,6 +203,20 @@ def mailReply(request):
         data = request.body
         json_data = json.loads(data)  # 把 json 数据转换为字典
         print(json_data)
+        if not json_data[0]['report_status'] == 'SUCCESS': #短信发送成功的回调
+            pass
+        forPhone=json_data['mobile'] #回复的手机号
+        text=json_data['text'] #内容
+        nowTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        while True:
+            a=0
+            b=1
+            getMail=models.successMail.objects.order_by('-id')[a:b].values()[0]
+            if getMail['forPhone'] == forPhone:
+                models.replyMail.objects.create(phone=getMail['phone'],forPhone=forPhone,uid=getMail['uid'],mail=text,myMail=getMail['mail'],sendTime=nowTime)
+                break
+            a+=1
+            b+=1
         return JsonResponse({'code':200})
 @csrf_exempt
 def openMailMessage(request):

@@ -65,16 +65,8 @@ class replyMail(models.Model):
     phone = models.CharField(verbose_name='手机号', max_length=11)
     forPhone=models.CharField(verbose_name='对方手机号',max_length=11)
     mail = models.CharField(verbose_name='我的回复', max_length=800)
-    isOpenChoice = (
-        (1, 'true'),
-        (0, 'false')
-    )
-    isOpen = models.SmallIntegerField(choices=isOpenChoice, default=0, verbose_name='是否公开')
+    myMail = models.CharField(verbose_name='我的短信', max_length=800)
     sendTime=models.CharField(verbose_name='发送时间' ,max_length=20)
-    nickName=models.CharField(verbose_name='昵称', max_length=8)
-    class Meta:
-        ordering = ['-sendTime']
-
 
 class labour(models.Model):
     uid = models.CharField(verbose_name='uid', max_length=11)
