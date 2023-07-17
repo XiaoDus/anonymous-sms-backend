@@ -24,11 +24,11 @@ def sendSMS(forNumber, message):
 
         # 实例化一个请求对象,每个接口都会对应一个request对象
         req = models.SendSmsRequest()
-        params = {
+          params = {
             "PhoneNumberSet": [forNumber],
-            "SmsSdkAppId": "1400718128",
-            "SignName": "翔集科技",
-            "TemplateId": "1856123",
+            "SmsSdkAppId": "*****",//id
+            "SignName": "*****", //签名
+            "TemplateId": "*****", //模版id
             "TemplateParamSet": ["用户", "朋友写给您的匿名信", message+' ']
         }
         req.from_json_string(json.dumps(params))
