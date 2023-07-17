@@ -33,8 +33,8 @@ def getSessionKey(request):
         encryptedData = json_data['encryptedData']
         iv = json_data['iv']
         msg = {
-            'appid': 'wx721656e2f1d02e7d',  # 微信小程序appid
-            'secret': '540982264045c098a0cf72872a4a8ab9',  # 微信小程序appsecret
+            'appid': '*****',  # 微信小程序appid
+            'secret': '*****',  # 微信小程序appsecret
             'js_code': unicode,  # 前端用uni.login({OBJECT})获取的code
             'grant_type': 'authorization_code'
         }
@@ -234,7 +234,7 @@ from smsApp.static.WXBizDataCrypt import WXBizDataCrypt
 # 解码获取手机号
 def decrypt(encryptedData, iv, session_key):
     '''微信信息解码'''
-    app_id = 'wx721656e2f1d02e7d'
+    app_id = '******'
     # 使用 session_key 和 iv 创建一个解密器
     crypt = WXBizDataCrypt(app_id, session_key)
     # 对加密数据进行解密
@@ -278,8 +278,8 @@ def get_prepay_order(request):
     userPhone = params['userPhone']
     openID = models.UserInfo.objects.filter(phone=userPhone).values('openId')[0]['openId']
     # 构造请求参数
-    appid = 'wx721656e2f1d02e7d'  # 小程序 AppID
-    mch_id = '1648295608'  # 商户号
+    appid = '***'  # 小程序 AppID
+    mch_id = '***'  # 商户号
     nonce_str = generate_nonce_str(16)  # 随机字符串
     body = params['body']  # 商品描述
     out_trade_no = params['out_trade_no']  # 商户订单号
@@ -304,7 +304,7 @@ def get_prepay_order(request):
     }
     print(sign_params)
 
-    sign = generate_sign(sign_params, 'duxinghai826012560duxinghai04950')  # 商户密钥
+    sign = generate_sign(sign_params, '12345678')  # 商户密钥
     # 构造 XML 格式的请求体
     request_body = f'''
         <xml>
@@ -344,7 +344,7 @@ def get_prepay_order(request):
             'signType': 'MD5',
             'timeStamp': current_time,
         }
-        getSignKey = generate_sign(sign_key, 'duxinghai826012560duxinghai04950')  # 商户密钥
+        getSignKey = generate_sign(sign_key, '12345678')  # 商户密钥
 
         return JsonResponse(
             {'code': 200, 'static': prepay_id, 'sign': getSignKey, 'nonce_str': nonce_str, 'timeStamp': current_time})
