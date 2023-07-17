@@ -26,9 +26,9 @@ def sendSMS(forNumber, message):
         req = models.SendSmsRequest()
         params = {
             "PhoneNumberSet": [forNumber],
-            "SmsSdkAppId": "1400718128",
-            "SignName": "翔集科技",
-            "TemplateId": "1856123",
+            "SmsSdkAppId": "*****",//id
+            "SignName": "*****", //签名
+            "TemplateId": "*****", //模版id
             "TemplateParamSet": ["用户", "朋友写给您的匿名信", message+' ']
         }
         req.from_json_string(json.dumps(params))
