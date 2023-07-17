@@ -1,6 +1,8 @@
 <template>
 	<view>
-		<view class="wMail">写信</view>
+		<uni-notice-bar show-icon scrollable speed=80
+			text="此短信运营商将在22:00-8:00停止发送短信避免打扰用户,给您带来不便请谅解!" />
+		
 		<view class="uni-flex uni-column email">
 
 			<!-- 手机号 -->

@@ -9,17 +9,21 @@
 			</li>
 
 			<!-- 短信内容 -->
-			<li class="flex-item flex-item-V mailText">
-				{{text}}
-
+			<li class="flex-item flex-item-V " style="font-size: 14px;" v-if="listName=='reply'?true:false">
+				我的短信:  {{myMail}}
 			</li>
 
+			<!-- 短信内容 -->
+			<li class="flex-item flex-item-V mailText">
+				回复我的:  {{text}}
+			</li>
 			<!-- 公开信 -->
-			<li class="flex-item flex-item-V openMail">
+			<li class="flex-item flex-item-V openMail" v-if="listName=='reply'?false:true">
 				<view class="openText"><img
 						src="https://mp-891a44a8-f007-4426-a7a4-607ad2bc43d0.cdn.bspapp.com/email/wenhao.png"
 						@click='openClick'>公开展示</view>
-				<switch color="#51aa38" :checked="isOpen" :disabled="listName=='fail'?true:false" @change="switch1Change" style="transform:scale(0.7)" />
+				<switch color="#51aa38" :checked="isOpen" :disabled="listName=='fail'?true:false"
+					@change="switch1Change" style="transform:scale(0.7)" />
 			</li>
 
 			<li class="flex-item flex-item-V sendMail">
@@ -36,6 +40,7 @@
 				phone: '',
 				isOpen: null,
 				text: '',
+				myMail: '',
 				uid: '',
 				listName: ''
 
@@ -51,12 +56,24 @@
 				const eventChannel = this.getOpenerEventChannel();
 				// 监听mailMag事件，获取上一页面通过eventChannel传送到当前页面的数据
 				eventChannel.on('mailMag', (data) => {
+					console.log(data)
 					const message = data.data
-					this.phone = message.forPhone
-					this.isOpen = message.isOpen
-					this.text = message.mail
-					this.uid = message.uid
-					this.listName = data.name
+					if (data.name == 'success') {
+						this.phone = message.forPhone
+						this.isOpen = message.isOpen
+						this.text = message.mail
+						this.uid = message.uid
+						this.listName = data.name
+					} else if (data.name == 'reply') {
+						this.phone = message.forPhone
+						this.isOpen = message.isOpen
+						this.text = message.mail
+						this.myMail = message.myMail
+						this.uid = message.uid
+						this.listName = data.name
+					}
+
+
 				})
 			},
 
@@ -68,22 +85,22 @@
 				} else {
 					this.isOpen = 0
 				}
-				
+
 				uni.request({
 					url: 'https://1el9898253.oicp.vip/getMailMessage/',
 					data: {
-						uid:this.uid,
-						listName:this.listName,
-						isOpen:this.isOpen
+						uid: this.uid,
+						listName: this.listName,
+						isOpen: this.isOpen
 					},
-					success: (res) =>{
+					success: (res) => {
 						uni.showToast({
 							title: '修改成功',
 							duration: 1000
 						});
 					}
 				})
-				
+
 			},
 
 			//返回上一页并刷新
