@@ -1,6 +1,6 @@
 ---
 
-# 📨 Anonymous SMS Backend 项目介绍
+
 
 `anonymous-sms-backend` 是一个基于 Python（ Django 框架）开发的短信发送后端系统，支持用户以匿名方式发送短信。该系统旨在保护用户隐私，同时提供一个简洁高效的接口，适用于匿名反馈、舆情采集、临时通知等敏感信息传递场景。
 
